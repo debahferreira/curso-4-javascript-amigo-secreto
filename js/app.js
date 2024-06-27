@@ -3,11 +3,22 @@ let i = 0;
 function adicionar() {
     let nomeAmigo = document.getElementById('nome-amigo').value;
     let listaAmigos = document.getElementById('lista-amigos').textContent;
-    
+    let arrayAmigos = listaAmigos.split(', ');
+
+    if(nomeAmigo == '') {
+        alert('Insira um nome a ser adicionado.');
+        return;
+    }
+
+    if(arrayAmigos.includes(nomeAmigo)) {
+        alert('Não é possível adicionar nomes repetidos.');
+        document.getElementById('nome-amigo').value = '';
+        return;
+    }
 
     if(i == 0) {
     listaAmigos = listaAmigos + nomeAmigo;
-    let arrayAmigos = listaAmigos.split(', ');
+    arrayAmigos = listaAmigos.split(', ');
     document.getElementById('lista-amigos').textContent = listaAmigos;
     document.getElementById('nome-amigo').value = '';
     console.log(arrayAmigos);
@@ -32,6 +43,12 @@ function embaralhar(lista) {
 function sortear() {
     listaAmigos = document.getElementById('lista-amigos').textContent;
     arrayAmigos = listaAmigos.split(', ');
+
+    if(arrayAmigos.length < 4) {
+        alert('Insira, no mínimo, quatro amigos.');
+        return;
+    }
+
     embaralhar(arrayAmigos);
     console.log(arrayAmigos);
     let listaSorteio = document.getElementById('lista-sorteio');
